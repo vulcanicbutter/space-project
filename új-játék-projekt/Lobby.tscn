@@ -67,7 +67,6 @@ radius = 7.0
 height = 25.0
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-168, 17)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_mc3c4")
@@ -110,7 +109,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_jjvec")
 
 [node name="PlayerAttackHitbox" type="Area2D" parent="Player"]
-visible = false
 position = Vector2(-0.4, 0.1)
 scale = Vector2(3, 3)
 script = ExtResource("8_ouqy5")
@@ -130,57 +128,59 @@ position = Vector2(9, -59)
 tile_map_data = PackedByteArray("AADx/wkAAAACAAIAAADy/wkAAAACAAIAAADz/wkAAAADAAIAAAD0/wkAAAAEAAIAAAD1/wkAAAACAAIAAAD2/wkAAAABAAIAAAD3/wkAAAAEAAIAAAD4/wkAAAABAAIAAAD5/wkAAAAEAAIAAAD6/wkAAAABAAIAAAD7/wkAAAACAAIAAAD8/wkAAAADAAIAAAD9/wkAAAABAAIAAAD+/wkAAAABAAIAAAD//wkAAAABAAIAAAAAAAkAAAAEAAIAAAABAAkAAAABAAIAAAACAAkAAAADAAIAAAADAAkAAAAEAAIAAAAEAAkAAAAEAAIAAAAFAAkAAAADAAIAAAAGAAkAAAABAAIAAAAHAAkAAAADAAIAAAAIAAkAAAACAAIAAAAJAAkAAAACAAIAAAAKAAkAAAADAAIAAAALAAkAAAACAAIAAAAMAAkAAAACAAIAAAANAAkAAAADAAIAAAAOAAkAAAAFAAIAAADw/wkAAAAAAAIAAADw/wgAAAAAAAEAAADw/wcAAAAAAAEAAADw/wYAAAAAAAEAAADw/wUAAAAAAAEAAADw/wQAAAAAAAEAAADw/wMAAAAAAAEAAADw/wIAAAAAAAEAAADw/wEAAAAAAAEAAADw/wAAAAAAAAEAAADw////AAAAAAEAAADw//7/AAAAAAEAAADw//3/AAAAAAEAAADw//z/AAAAAAEAAADw//v/AAAAAAEAAADw//r/AAAAAAEAAAAOAAgAAAAFAAEAAAAOAAcAAAAFAAEAAAAOAAYAAAAFAAEAAAAOAAUAAAAFAAEAAAAOAAQAAAAFAAEAAAAOAAMAAAAFAAEAAAAOAAIAAAAFAAEAAAAOAAEAAAAFAAEAAAAOAAAAAAAFAAEAAAAOAP//AAAFAAEAAAAOAP7/AAAFAAEAAAAOAP3/AAAFAAEAAAAOAPz/AAAFAAEAAAAOAPv/AAAFAAEAAAAOAPr/AAAFAAEAAAA=")
 tile_set = SubResource("TileSet_hiny6")
 
-[node name="Enemy" type="CharacterBody2D" parent="." groups=["enemies"]]
-position = Vector2(-167, 53)
+[node name="Enemy3" type="CharacterBody2D" parent="." groups=["enemies"]]
+position = Vector2(-24, -128)
 motion_mode = 1
 script = ExtResource("10_mxsb5")
+move_speed = 65.0
 
-[node name="EnemyAttackHitbox" type="Area2D" parent="Enemy"]
-visible = false
+[node name="EnemyAttackHitbox" type="Area2D" parent="Enemy3"]
 position = Vector2(-0.399994, 0.0999985)
 scale = Vector2(3, 3)
 script = ExtResource("11_1q3jt")
+attack_cooldown = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/EnemyAttackHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/EnemyAttackHitbox"]
 shape = SubResource("CircleShape2D_hiny6")
 disabled = true
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Enemy/EnemyAttackHitbox/CollisionShape2D"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Enemy3/EnemyAttackHitbox/CollisionShape2D"]
 modulate = Color(0.839216, 0.694118, 0, 0.380392)
 position = Vector2(-0.033339, -0.0333302)
 scale = Vector2(14.3496, 14)
 mesh = SubResource("SphereMesh_hiny6")
 
-[node name="EnemyHurtBox" type="Area2D" parent="Enemy"]
+[node name="EnemyHurtBox" type="Area2D" parent="Enemy3"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/EnemyHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/EnemyHurtBox"]
 position = Vector2(0.5, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_tccrc")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Enemy"]
+[node name="Sprite2D2" type="Sprite2D" parent="Enemy3"]
 rotation = -3.14159
 texture = ExtResource("5_ufkk4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
 position = Vector2(0.5, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_tccrc")
 
-[node name="defaultrange" type="Area2D" parent="Enemy"]
+[node name="DefaultRange" type="Area2D" parent="Enemy3"]
 position = Vector2(-0.399994, 0.0999985)
 scale = Vector2(3, 3)
 script = ExtResource("11_1q3jt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/defaultrange"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/DefaultRange"]
 shape = SubResource("CircleShape2D_hiny6")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Enemy/defaultrange/CollisionShape2D"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Enemy3/DefaultRange/CollisionShape2D"]
 modulate = Color(0.839216, 0.694118, 0, 0.380392)
 position = Vector2(-0.033339, -0.0333302)
 scale = Vector2(14.3496, 14)
 mesh = SubResource("SphereMesh_hiny6")
 
 [connection signal="area_entered" from="Player/PlayerHurtBox" to="Player/PlayerStats" method="_on_player_hurt_box_area_entered"]
-[connection signal="area_entered" from="Enemy/EnemyHurtBox" to="Enemy" method="_on_enemy_hurt_box_area_entered"]
-[connection signal="area_entered" from="Enemy/defaultrange" to="Enemy/EnemyAttackHitbox" method="_on_defaultrange_area_entered"]
+[connection signal="area_entered" from="Enemy3/EnemyHurtBox" to="Enemy3" method="_on_enemy_hurt_box_area_entered"]
+[connection signal="area_entered" from="Enemy3/DefaultRange" to="Enemy3/EnemyAttackHitbox" method="_on_default_range_area_entered"]
+[connection signal="area_exited" from="Enemy3/DefaultRange" to="Enemy3/EnemyAttackHitbox" method="_on_default_range_area_exited"]

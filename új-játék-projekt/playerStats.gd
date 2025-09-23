@@ -2,7 +2,6 @@ extends Node
 
 @export var Health = 100
 
-
 func _on_player_hurt_box_area_entered(area: Area2D) -> void:
 	#print("ütközött", area)
 	if area.has_method("attack_player"):

@@ -3,7 +3,7 @@ extends CharacterBody2D
 #region Movement constants
 @export var MAX_SPEED = 200.0
 @export var ACCELERATION = 800.0
-@export var DECELERATION = 950.0
+@export var DECELERATION = 800.0
 #endregion
 
 #region Attack variables
