@@ -48,7 +48,7 @@ func _physics_process(delta):
 #region Dash
 	
 	
-	if Input.is_action_just_pressed("Dash") and dash_can == true and dash_amount >= 1:
+	if Input.is_action_just_pressed("Dash") and dash_can == true and dash_amount >= 1 :
 	#dash
 		dash_can = false
 		dash_amount = dash_amount - 1
