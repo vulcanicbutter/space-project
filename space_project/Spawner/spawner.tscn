@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d24okg6po3c77"]
+
+[ext_resource type="Script" uid="uid://cn781nfil71n5" path="res://spawner.gd" id="1_10h3l"]
+[ext_resource type="PackedScene" uid="uid://bktht5phnmh1s" path="res://Enviorment/wall.tscn" id="2_38tkg"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_10h3l")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="wall" parent="." instance=ExtResource("2_38tkg")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

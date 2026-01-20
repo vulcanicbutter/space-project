@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2mr7mdjs6gk0"]
+
+[ext_resource type="Texture2D" uid="uid://cebffj3hqoyd5" path="res://items/gun/pixel-art-retro-toy-gun-isolated-white-background_1292377-21085.png" id="1_kltfy"]
+[ext_resource type="Script" uid="uid://cv8lyeaoa4117" path="res://items/gun/gun.gd" id="1_yp0mf"]
+
+[node name="gun" type="Node2D"]
+script = ExtResource("1_yp0mf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(19, -3)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_kltfy")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(25, -5)
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true

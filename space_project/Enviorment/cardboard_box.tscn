@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://6vhjhe6mekae"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ogqv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogqv5"]
+
+[node name="BoxHandler" type="Node2D"]
+
+[node name="carboardbox" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="carboardbox"]
+position = Vector2(2.98023e-08, 0)
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_ogqv5")
+
+[node name="Area2D" type="Area2D" parent="carboardbox"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="carboardbox/Area2D"]
+shape = SubResource("RectangleShape2D_ogqv5")
