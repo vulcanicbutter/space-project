@@ -13,3 +13,6 @@ texture = ExtResource("1_kltfy")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(25, -5)
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true

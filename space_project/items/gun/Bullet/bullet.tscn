@@ -1,17 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://ofdikqvhq72v"]
+[gd_scene load_steps=4 format=3 uid="uid://ofdikqvhq72v"]
 
 [ext_resource type="Texture2D" uid="uid://30dqepc8ap8a" path="res://items/gun/Bullet/Bullet.png" id="1_miwmg"]
 [ext_resource type="Script" uid="uid://d20t45k3lvx2" path="res://items/gun/Bullet/bullet.gd" id="1_tnb50"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnb50"]
+size = Vector2(369.778, 178.286)
+
 [node name="bullet" type="Node2D"]
+scale = Vector2(1, 1)
 script = ExtResource("1_tnb50")
 
-[node name="bullet" type="Sprite2D" parent="."]
-position = Vector2(0.5, -2.38419e-07)
+[node name="Bullet_area" type="Area2D" parent="." groups=["golyo"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet_area"]
+position = Vector2(2.98023e-08, 0)
 scale = Vector2(0.0108173, 0.0112179)
+shape = SubResource("RectangleShape2D_tnb50")
+
+[node name="bullet" type="Sprite2D" parent="Bullet_area/CollisionShape2D"]
+scale = Vector2(1, 1)
 texture = ExtResource("1_miwmg")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(0.5, 0.6)
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Bullet_area/CollisionShape2D"]
+position = Vector2(7.62939e-06, 0)
+scale = Vector2(27.7334, 26.7429)
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="Bullet_area/CollisionShape2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
