@@ -33,28 +33,23 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	
-	
-	var gun_node = get_node_or_null("../gun")
-	
-	if gun_node:
-		var pickupdistance: Vector2 = gun_node.global_position - self.global_position
+	if Lobby.pickup == false:
+		var gun_node = get_node("../gun")
 		
-		# region pickup (Move your pickup logic inside this 'if' block)
-		if pickupdistance.length() <= 20:
-			close_enough = true
-		else:
-			close_enough = false
+		if gun_node:
+			var pickupdistance: Vector2 = gun_node.global_position - self.global_position
 			
-		if Input.is_action_just_pressed("pickup") and close_enough:
-			gun_node.reparent(self)
-			Lobby.pickup = true
-		# endregion
-		else:
-			# This will help you debug if the path is wrong!
-			# print("Gun not found at path ../gun")
-			pass
-	#var pickupdistance: Vector2 = $"../gun".global_position - self.global_position 
+			# region pickup (Move your pickup logic inside this 'if' block)
+			if pickupdistance.length() <= 20:
+				close_enough = true
+			else:
+				close_enough = false
+				
+			if Input.is_action_just_pressed("pickup") and close_enough:
+				gun_node.reparent(self)
+				Lobby.pickup = true
+			# endregion
+	
 #region Movement function
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
