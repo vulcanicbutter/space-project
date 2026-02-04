@@ -116,6 +116,16 @@ scale = Vector2(14.3496, 14)
 mesh = SubResource("SphereMesh_hiny6")
 
 [node name="Player" parent="." instance=ExtResource("3_6tm10")]
+MAX_SPEED = null
+ACCELERATION = null
+DECELERATION = null
+dash_can = null
+dash_amount = null
+dash_coldown = null
+dash_lenght = null
+dash_max_amount = null
+dash_regen = null
+dash_regen_coldown = null
 
 [node name="Spawner" parent="." instance=ExtResource("4_iiluk")]
 

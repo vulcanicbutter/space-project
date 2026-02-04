@@ -7,7 +7,6 @@
 size = Vector2(369.778, 178.286)
 
 [node name="bullet" type="Node2D"]
-scale = Vector2(1, 1)
 script = ExtResource("1_tnb50")
 
 [node name="Bullet_area" type="Area2D" parent="." groups=["golyo"]]
@@ -18,7 +17,6 @@ scale = Vector2(0.0108173, 0.0112179)
 shape = SubResource("RectangleShape2D_tnb50")
 
 [node name="bullet" type="Sprite2D" parent="Bullet_area/CollisionShape2D"]
-scale = Vector2(1, 1)
 texture = ExtResource("1_miwmg")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Bullet_area/CollisionShape2D"]

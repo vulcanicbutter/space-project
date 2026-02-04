@@ -14,25 +14,28 @@ const bullet = preload("res://items/gun/Bullet/bullet.tscn")
 
 
 func _physics_process(delta):
-	look_at(get_global_mouse_position())
-	
-	if Input.is_action_just_pressed("reload") and ammo != max_ammo :
-		await get_tree().create_timer(reloadtime).timeout
-		ammo = max_ammo
-	
-	rotation_degrees = wrapf(rotation_degrees, 0.0, 360.0)
-	
-	if rotation_degrees > 90 and rotation_degrees < 270:
-		scale.y = -1
-	else:
-		scale.y = 1
 		
-	if Input.is_action_just_pressed("attack") and ammo > 0 and fire_timer.is_stopped():
-		var bullet_instance = load("res://items/gun/Bullet/bullet.tscn").instantiate()
-		add_child(bullet_instance)
-		ammo = ammo-1
-		bullet_instance.global_position = muzzle.global_position
-		bullet_instance.rotation = rotation
-		fire_timer.start(fire_rate)
+	if Lobby.pickup:
+		position = Vector2.ZERO
+		look_at(get_global_mouse_position())
 		
-		#pistol_cooldown = true
+		if Input.is_action_just_pressed("reload") and ammo != max_ammo :
+			await get_tree().create_timer(reloadtime).timeout
+			ammo = max_ammo
+		
+		rotation_degrees = wrapf(rotation_degrees, 0.0, 360.0)
+		
+		if rotation_degrees > 90 and rotation_degrees < 270:
+			scale.y = -1
+		else:
+			scale.y = 1
+			
+		if Input.is_action_just_pressed("attack") and ammo > 0 and fire_timer.is_stopped():
+			var bullet_instance = load("res://items/gun/Bullet/bullet.tscn").instantiate()
+			add_child(bullet_instance)
+			ammo = ammo-1
+			bullet_instance.global_position = muzzle.global_position
+			bullet_instance.rotation = rotation
+			fire_timer.start(fire_rate)
+			
+			#pistol_cooldown = true

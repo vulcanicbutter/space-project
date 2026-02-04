@@ -11,6 +11,8 @@ extends CharacterBody2D
 @export var dash_max_amount = 4
 @export var dash_regen = true
 @export var dash_regen_coldown = 2
+const gun_inst = preload("res://items/gun/gun.tscn")
+var close_enough = false
 #endregion
 
 #region Attack variables
@@ -28,8 +30,31 @@ func _ready():
 	
 	attack_component = $PlayerAttackHitbox
 	
+	
 func _physics_process(delta):
 	
+	
+	
+	var gun_node = get_node_or_null("../gun")
+	
+	if gun_node:
+		var pickupdistance: Vector2 = gun_node.global_position - self.global_position
+		
+		# region pickup (Move your pickup logic inside this 'if' block)
+		if pickupdistance.length() <= 20:
+			close_enough = true
+		else:
+			close_enough = false
+			
+		if Input.is_action_just_pressed("pickup") and close_enough:
+			gun_node.reparent(self)
+			Lobby.pickup = true
+		# endregion
+		else:
+			# This will help you debug if the path is wrong!
+			# print("Gun not found at path ../gun")
+			pass
+	#var pickupdistance: Vector2 = $"../gun".global_position - self.global_position 
 #region Movement function
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -68,7 +93,6 @@ func _physics_process(delta):
 		await get_tree().create_timer(dash_regen_coldown).timeout
 		dash_regen = true
 	
-
 	
 #region Texture changer function
 	if input_vector.x > 0:
@@ -80,3 +104,15 @@ func _physics_process(delta):
 	elif input_vector.y < 0:
 		sprite.texture = character_front
 #endregion
+#region pickup
+	
+	#if  pickupdistance.length() <= 20 :
+		#close_enough = true
+	#else:
+		#close_enough = false
+	
+	#if Input.is_action_just_pressed("pickup") and close_enough:
+		#$"../gun".reparent(self)
+		#Lobby.pickup = true
+	#
+		#
