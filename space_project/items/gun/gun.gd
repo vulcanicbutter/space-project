@@ -32,10 +32,11 @@ func _physics_process(delta):
 			
 		if Input.is_action_just_pressed("attack") and ammo > 0 and fire_timer.is_stopped():
 			var bullet_instance = load("res://items/gun/Bullet/bullet.tscn").instantiate()
-			add_child(bullet_instance)
-			ammo = ammo-1
+			get_tree().root.add_child(bullet_instance)  # changed from add_child
+			ammo -= 1
 			bullet_instance.global_position = muzzle.global_position
 			bullet_instance.rotation = rotation
 			fire_timer.start(fire_rate)
-			
+			bullet_instance.final_velocity = Vector2.RIGHT.rotated(rotation) * Lobby.bullet_speed + Lobby.velocity
+			print(bullet_instance.final_velocity)
 			#pistol_cooldown = true

@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
 #region Movement constants
-@export var MAX_SPEED = 200.0
-@export var ACCELERATION = 800.0
-@export var DECELERATION = 800.0
+@export var MAX_SPEED = 170.0
+@export var ACCELERATION = 700.0
+@export var DECELERATION = 700.0
 @export var dash_can = true
 @export var dash_amount = 1
 @export var dash_coldown = 1
-@export var dash_lenght = 0.105
+@export var dash_lenght = 0.1
 @export var dash_max_amount = 4
 @export var dash_regen = true
 @export var dash_regen_coldown = 2
@@ -63,6 +63,8 @@ func _physics_process(delta):
 		#lassulás
 		velocity = velocity.move_toward(Vector2.ZERO, DECELERATION * delta)
 	move_and_slide()
+	Lobby.velocity = velocity
+	
 #endregion
 
 #region Dash
@@ -72,8 +74,8 @@ func _physics_process(delta):
 	#dash
 		dash_can = false
 		dash_amount = dash_amount - 1
-		MAX_SPEED = MAX_SPEED * 5
-		ACCELERATION = ACCELERATION * 6.3
+		MAX_SPEED = MAX_SPEED * 4.5
+		ACCELERATION = ACCELERATION * 6
 		await get_tree().create_timer(dash_lenght).timeout
 		MAX_SPEED = MAX_SPEED / 5
 		ACCELERATION = ACCELERATION / 6.3
